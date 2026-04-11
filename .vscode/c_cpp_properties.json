@@ -1,0 +1,107 @@
+{
+  "configurations": [
+    {
+      "name": "Linux",
+      "intelliSenseMode": "clang-x64",
+      "includePath": [
+        "${workspaceFolder}/external/asio/asio/include/*",
+        "${workspaceFolder}/external/banned/*",
+        "${workspaceFolder}/external/curl/include/*",
+        "${workspaceFolder}/external/json/single_include/*",
+        "${workspaceFolder}/external/libLog/include/*",
+        "${workspaceFolder}/include/*"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/external/asio/asio/include",
+          "${workspaceFolder}/external/banned",
+          "${workspaceFolder}/external/curl/include",
+          "${workspaceFolder}/external/json/single_include",
+          "${workspaceFolder}/external/libLog/include",
+          "${workspaceFolder}/include"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+      },
+      "defines": [
+        "__LIBLOG_PC__"
+      ],
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
+      "cppStandard": "c++17"
+    },
+    {
+      "name": "PS4",
+      "intelliSenseMode": "clang-x64",
+      "includePath": [
+        "${workspaceFolder}/external/asio/asio/include/*",
+        "${workspaceFolder}/external/banned/*",
+        "${workspaceFolder}/external/curl/include/*",
+        "${workspaceFolder}/external/json/single_include/*",
+        "${workspaceFolder}/external/libLog/include/*",
+        "${workspaceFolder}/include/*",
+        "${env:PS4_PAYLOAD_SDK}/include/*",
+        "${env:PS4_PAYLOAD_SDK}/orbis/include/*",
+        "${env:PS4_PAYLOAD_SDK}/lib/*"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/external/asio/asio/include",
+          "${workspaceFolder}/external/banned",
+          "${workspaceFolder}/external/curl/include",
+          "${workspaceFolder}/external/json/single_include",
+          "${workspaceFolder}/external/libLog/include",
+          "${workspaceFolder}/include",
+          "${env:PS4_PAYLOAD_SDK}/include",
+          "${env:PS4_PAYLOAD_SDK}/orbis/include",
+          "${env:PS4_PAYLOAD_SDK}/lib"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+      },
+      "defines": [
+        "__ORBIS__"
+      ],
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
+      "cppStandard": "c++17"
+    },
+    {
+      "name": "PS5",
+      "intelliSenseMode": "clang-x64",
+      "includePath": [
+        "${workspaceFolder}/external/asio/asio/include/*",
+        "${workspaceFolder}/external/banned/*",
+        "${workspaceFolder}/external/curl/include/*",
+        "${workspaceFolder}/external/json/single_include/*",
+        "${workspaceFolder}/external/libLog/include/*",
+        "${workspaceFolder}/include/*",
+        "${env:PS5_PAYLOAD_SDK}/include/*",
+        "${env:PS5_PAYLOAD_SDK}/prospero/include/*",
+        "${env:PS5_PAYLOAD_SDK}/lib/*"
+      ],
+      "browse": {
+        "path": [
+          "${workspaceFolder}/external/asio/asio/include",
+          "${workspaceFolder}/external/banned",
+          "${workspaceFolder}/external/curl/include",
+          "${workspaceFolder}/external/json/single_include",
+          "${workspaceFolder}/external/libLog/include",
+          "${workspaceFolder}/include",
+          "${env:PS5_PAYLOAD_SDK}/include",
+          "${env:PS5_PAYLOAD_SDK}/prospero/include",
+          "${env:PS5_PAYLOAD_SDK}/lib"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+      },
+      "defines": [
+        "__PROSPERO__"
+      ],
+      "compilerPath": "/usr/bin/clang++",
+      "cStandard": "c17",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,80 @@
+name: Sanity Test
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - .vscode/**
+      - .clang-format
+      - .gitignore
+      - config.example.json
+      - LICENSE
+      - logo.png
+      - README.md
+      - TODO.md
+      - zones-schema.jsonc
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .vscode/**
+      - .clang-format
+      - .gitignore
+      - config.example.json
+      - LICENSE
+      - logo.png
+      - README.md
+      - TODO.md
+      - zones-schema.jsonc
+
+jobs:
+  build:
+    name: Build and Test ${{ matrix.platform }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [PC, PS4, PS5]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake clang make wget unzip
+
+      - name: Download and install Payload SDKs
+        if: matrix.platform != 'PC'
+        run: |
+          wget -q -O ps4-payload-sdk.zip https://github.com/ps4-payload-dev/sdk/releases/latest/download/ps4-payload-sdk.zip
+          wget -q -O ps5-payload-sdk.zip https://github.com/ps5-payload-dev/sdk/releases/latest/download/ps5-payload-sdk.zip
+          sudo unzip -o ps4-payload-sdk.zip -d /opt
+          sudo unzip -o ps5-payload-sdk.zip -d /opt
+          echo "PS4_PAYLOAD_SDK=/opt/ps4-payload-sdk" >> $GITHUB_ENV
+          echo "PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk" >> $GITHUB_ENV
+
+      - name: Configure build
+        run: |
+          if [ "${{ matrix.platform }}" = "PS4" ]; then
+            "$PS4_PAYLOAD_SDK/bin/orbis-cmake" -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
+          elif [ "${{ matrix.platform }}" = "PS5" ]; then
+            "$PS5_PAYLOAD_SDK/bin/prospero-cmake" -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
+          else
+            cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ .
+          fi
+
+      - name: Build
+        run: make -j$(nproc)
+
+      - name: Run PC tests
+        if: matrix.platform == 'PC'
+        run: |
+          ./build/bin/run_tests
+
+      - name: Run PC integration tests
+        if: matrix.platform == 'PC'
+        run: |
+          python3 tests/integration_test.py

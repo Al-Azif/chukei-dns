@@ -1,0 +1,206 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build (Debug)",
+      "type": "shell",
+      "command": "cmake -DCMAKE_BUILD_TYPE=Debug . && make -j$(nproc)",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build (Release)",
+      "type": "shell",
+      "command": "cmake -DCMAKE_BUILD_TYPE=Release . && make -j$(nproc)",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean (Build)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "rm -rf bin/ build/ CMakeFiles/ src/CMakeFiles/ tests/CMakeFiles/ cmake_install.cmake src/cmake_install.cmake tests/cmake_install.cmake CPackConfig.cmake CPackSourceConfig.cmake CMakeCache.txt src/CMakeCache.txt tests/CMakeCache.txt main Makefile src/Makefile tests/Makefile include/cmake_vars.h include/default_json.h include/cacert_bundle.h src/libCHUKEI.a coverage_html/ coverage.* *.profraw *.profdata compile_commands.json 2>/dev/null || true && make -C external/libLog -f Makefile.pc clean 2>/dev/null || true && rm -rf external/curl/CMakeFiles/ external/curl/CMakeCache.txt external/curl/cmake_install.cmake external/curl/CTestTestfile.cmake external/curl/libcurl-target.cmake external/curl/libcurl.pc external/curl/curl-config external/curl/buildinfo.txt external/curl/Makefile external/curl/lib/Makefile external/curl/lib/curl_config.h external/curl/lib/libcurl*.a external/curl/lib/CMakeFiles/ external/curl/scripts/Makefile tests/CTestTestfile.cmake 2>/dev/null || true"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build (Clean Debug)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean (Build)",
+        "Build (Debug)"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build (Clean Release)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean (Build)",
+        "Build (Release)"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run clang-format",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "find include src tests -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' | xargs clang-format -style=file -i"
+      ],
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Flawfinder",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "flawfinder src/ include/ > flawfinder.log 2>&1 || true"
+      ],
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Cppcheck",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "cppcheck --check-level=exhaustive --enable=all --suppress=missingIncludeSystem --suppress=unusedFunction --inline-suppr --force --std=c++17 -I./include -I./external/asio/include -I./external/banned -I./external/curl/include -I./external/json/single_include -I./external/libLog/include src/ > cppcheck.log  2>&1 || true"
+      ],
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run PVS-Studio (Skip Cleanup)",
+      "type": "shell",
+      "command": "cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On -DCMAKE_BUILD_TYPE=Debug . && pvs-studio-analyzer analyze -f compile_commands.json -o pvs-studio.log -e external/ -j$(nproc) && plog-converter -a GA:1,2 -t json pvs-studio.log -d V1042 -o pvs-report.json && plog-converter -a GA:1,2 -t fullhtml pvs-studio.log -d V1042 -o pvs-report/",
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run PVS-Studio",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Run PVS-Studio (Skip Cleanup)",
+        "Clean (Build)"
+      ],
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean (Tests)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "rm -rf flawfinder.log cppcheck.log pvs-studio.log pvs-report.json pvs-report/ 2>/dev/null || true"
+      ],
+      "group": "test",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean (All)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Clean (Tests)",
+        "Clean (Build)"
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run All Lint/Checks",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Run clang-format",
+        "Run Flawfinder",
+        "Run Cppcheck",
+        "Run PVS-Studio"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "close": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

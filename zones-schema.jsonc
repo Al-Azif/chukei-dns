@@ -1,0 +1,284 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DNS Zones Configuration",
+  "type": "object",
+  "required": ["zones"],
+  "properties": {
+    "zones": {
+      "type": "array",
+      "items": {
+        "title": "DNS Zone",
+        "type": "object",
+        "required": ["zone"],
+        "properties": {
+          "zone": {
+            "type": "string",
+            "description": "Zone name (FQDN with trailing dot). For PTR reverse lookup zones use .in-addr.arpa. (IPv4) or .ip6.arpa. (IPv6) suffixes."
+          },
+          "regex": {
+            "type": "boolean",
+            "default": false
+          },
+          "blocked": {
+            "type": "boolean",
+            "default": false
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "title": "DNS Record",
+              "type": "object",
+              "required": ["name", "type", "ttl", "data"],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "regex": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["A", "AAAA", "NS", "CNAME", "SOA", "TXT", "MX", "SRV", "PTR"]
+                },
+                "ttl": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 604800
+                },
+                "data": {}
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": { "regex": { "const": true } }
+                  },
+                  "then": {
+                    "properties": {
+                      "name": {
+                        "pattern": ".*"
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "name": {
+                        "pattern": "^(@|\\*|[a-zA-Z0-9._-]+)$"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "A" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "ipv4"
+                          },
+                          {
+                            "type": "string",
+                            "enum": ["{{SELF}}", "{{BLOCKED}}", "{{FORWARD}}", "{{FORWARD_ALL}}"]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "AAAA" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "format": "ipv6"
+                          },
+                          {
+                            "type": "string",
+                            "enum": ["{{SELF}}", "{{BLOCKED}}", "{{FORWARD}}", "{{FORWARD_ALL}}"]
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "NS" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "CNAME" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "PTR" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9.-]+\\.$",
+                        "description": "PTR target domain name (FQDN with trailing dot). PTR records should be placed in zones ending with .in-addr.arpa. (IPv4) or .ip6.arpa. (IPv6)."
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "TXT" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "SOA" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "required": ["primary", "admin", "serial", "refresh", "retry", "expire", "minimum"],
+                        "properties": {
+                          "primary": { "type": "string" },
+                          "admin": { "type": "string" },
+                          "serial": { "type": "integer" },
+                          "refresh": { "type": "integer" },
+                          "retry": { "type": "integer" },
+                          "expire": { "type": "integer" },
+                          "minimum": { "type": "integer" }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "MX" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "required": ["preference", "exchange"],
+                        "properties": {
+                          "preference": { "type": "integer" },
+                          "exchange": { "type": "string" }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "type": { "const": "SRV" } }
+                  },
+                  "then": {
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "required": ["priority", "weight", "port", "target"],
+                        "properties": {
+                          "priority": { "type": "integer" },
+                          "weight": { "type": "integer" },
+                          "port": { "type": "integer" },
+                          "target": { "type": "string" }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  }
+                }
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": { "regex": { "const": true } }
+            },
+            "then": {
+              "properties": {
+                "zone": {
+                  "pattern": ".*"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "zone": {
+                  "pattern": "^[a-zA-Z0-9.-]+\\.$"
+                }
+              }
+            }
+          },
+          {
+            "oneOf": [
+              {
+                "properties": {
+                  "blocked": { "const": true }
+                },
+                "not": {
+                  "required": ["records"]
+                }
+              },
+              {
+                "properties": {
+                  "blocked": { "const": false }
+                },
+                "required": ["records"]
+              },
+              {
+                "not": {
+                  "properties": {
+                    "blocked": { "const": true }
+                  }
+                },
+                "required": ["records"]
+              }
+            ]
+          }
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

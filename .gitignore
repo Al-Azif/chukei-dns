@@ -1,0 +1,52 @@
+# IDE configs
+.vscode/*
+!.vscode/c_cpp_properties.json
+!.vscode/tasks.json
+
+# Testing data
+flawfinder.log
+cppcheck.log
+strace_out
+project.log
+report.tasks
+pvs-html/
+
+# Build artifacts
+cmake_install.cmake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+include/cmake_vars.h
+include/default_json.h
+include/cacert_bundle.h
+
+src/cmake_install.cmake
+src/CMakeCache.txt
+src/CMakeFiles/
+src/Makefile
+src/libCHUKEI.a
+
+tests/build/
+tests/cmake_install.cmake
+tests/CMakeCache.txt
+tests/CMakeFiles/
+tests/Makefile
+
+build/
+
+# CPack generated
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+# CTest generated
+CTestTestfile.cmake
+
+# Python
+__pycache__/
+*.pyc
+
+# Coverage artifacts
+*.profraw
+*.profdata
+coverage_html/
+coverage.json

@@ -1,0 +1,118 @@
+{
+  "zones": [
+    {
+      "zone": "nintendo.net.",
+      "records": [
+        { "name": "@", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "ctest.cdn", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "@", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "ctest.cdn", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" }
+      ]
+    },
+    {
+      "zone": "nintendowifi.net.",
+      "records": [
+        { "name": "@", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "conntest", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "@", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "conntest", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" }
+      ]
+    },
+    {
+      "zone": "wii.com.",
+      "records": [
+        { "name": "@", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "cfh.wapp", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "@", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "cfh.wapp", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" }
+      ]
+    },
+    {
+      "zone": "playstation.com.",
+      "records": [
+        { "name": "@", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "www", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "status", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "@", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "www", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "status", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" }
+      ]
+    },
+    {
+      "zone": "playstation.net.",
+      "records": [
+        { "name": "@", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "A", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "manuals", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "get.net", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "post.net", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "ena.net", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "update.net", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "oss.dl", "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "d(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps3|ps4|ps5|psp2)\\.update", "regex": true, "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "f(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps3|ps4|ps5|psp2)\\.update", "regex": true, "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "h(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps4|ps5)\\.update", "regex": true, "type": "A", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "@", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "*", "type": "AAAA", "ttl": 300, "data": "{{BLOCKED}}" },
+        { "name": "manuals", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "get.net", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "post.net", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "ena.net", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "update.net", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "oss.dl", "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "d(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps3|ps4|ps5|psp2)\\.update", "regex": true, "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "f(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps3|ps4|ps5|psp2)\\.update", "regex": true, "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "h(jp|us|eu|kr|uk|mx|au|sa|tw|ru|cn|hk|br)01\\.(ps4|ps5)\\.update", "regex": true, "type": "AAAA", "ttl": 300, "data": "{{SELF}}" },
+        { "name": "b0.ww.np.dl", "type": "CNAME", "ttl": 300, "data": "b0.ww.np.dl.playstation.net.edgesuite.net." },
+        { "name": "gs.ww.np.dl", "type": "CNAME", "ttl": 300, "data": "gs.ww.np.dl.playstation.net.edgesuite.net." },
+        { "name": "gs2.ww.prod.dl", "type": "CNAME", "ttl": 300, "data": "gs2.ww.prod.dl.playstation.net.edgesuite.net." },
+        { "name": "gst.prod.dl", "type": "CNAME", "ttl": 300, "data": "gst.prod.dl.playstation.net.edgesuite.net." }
+      ]
+    },
+    { "zone": "nintendo-europe.com.", "blocked": true },
+    { "zone": "nintendo.at.", "blocked": true },
+    { "zone": "nintendo.be.", "blocked": true },
+    { "zone": "nintendo.ch.", "blocked": true },
+    { "zone": "nintendo.co.jp.", "blocked": true },
+    { "zone": "nintendo.co.kr.", "blocked": true },
+    { "zone": "nintendo.co.nz.", "blocked": true },
+    { "zone": "nintendo.co.uk.", "blocked": true },
+    { "zone": "nintendo.co.za.", "blocked": true },
+    { "zone": "nintendo.com.", "blocked": true },
+    { "zone": "nintendo.com.au.", "blocked": true },
+    { "zone": "nintendo.com.hk.", "blocked": true },
+    { "zone": "nintendo.cz.", "blocked": true },
+    { "zone": "nintendo.de.", "blocked": true },
+    { "zone": "nintendo.dk.", "blocked": true },
+    { "zone": "nintendo.es.", "blocked": true },
+    { "zone": "nintendo.eu.", "blocked": true },
+    { "zone": "nintendo.fi.", "blocked": true },
+    { "zone": "nintendo.fr.", "blocked": true },
+    { "zone": "nintendo.gr.", "blocked": true },
+    { "zone": "nintendo.hu.", "blocked": true },
+    { "zone": "nintendo.it.", "blocked": true },
+    { "zone": "nintendo.jp.", "blocked": true },
+    { "zone": "nintendo.nl.", "blocked": true },
+    { "zone": "nintendo.no.", "blocked": true },
+    { "zone": "nintendo.pt.", "blocked": true },
+    { "zone": "nintendo.ru.", "blocked": true },
+    { "zone": "nintendo.se.", "blocked": true },
+    { "zone": "nintendo.tw.", "blocked": true },
+    { "zone": "nintendoswitch.cn.", "blocked": true },
+    { "zone": "nintendoswitch.com.", "blocked": true },
+    { "zone": "nintendoswitch.com.cn.", "blocked": true },
+    { "zone": "nintendoservicecentre.co.uk.", "blocked": true },
+    { "zone": "playstation.org.", "blocked": true },
+    { "zone": "scea.com.", "blocked": true },
+    { "zone": "sonyentertainmentnetwork.com.", "blocked": true },
+    { "zone": "sie-rd.com.", "blocked": true }
+  ]
+}

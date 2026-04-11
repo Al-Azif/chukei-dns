@@ -1,0 +1,19 @@
+{
+  "log_level": "info",
+
+  "doh_only": false,
+  "doh_resolvers": [
+    "https://1.1.1.1/dns-query",
+    "https://1.0.0.1/dns-query"
+  ],
+  "doh_timeout_ms": 15000,
+  "user_agent": "",
+  "cacert_path": "/data/chukei/cacert.pem",
+
+  "zones_path": "/data/chukei/zones.json",
+  "dns_ip": "127.0.0.1",
+  "dns_port": 53,
+  "redirect_ipv4": "127.0.0.1",
+  "redirect_ipv6": "::1",
+  "ttl": 3600
+}

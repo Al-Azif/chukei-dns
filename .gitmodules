@@ -1,0 +1,24 @@
+[submodule "external/asio"]
+	path = external/asio
+	url = https://github.com/chriskohlhoff/asio.git
+	branch = asio-1-38-0
+[submodule "external/banned"]
+	path = external/banned
+	url = https://github.com/x509cert/banned
+	branch = master
+[submodule "external/curl"]
+	path = external/curl
+	url = https://github.com/curl/curl
+	branch = curl-8_19_0
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json
+	branch = v3.12.0
+[submodule "external/libLog"]
+	path = external/libLog
+	url = https://github.com/Al-Azif/ps4-libLog/
+	branch = v0.9.3
+[submodule "external/wolfssl"]
+	path = external/wolfssl
+	url = https://github.com/wolfSSL/wolfssl
+	branch = v5.9.1-stable
