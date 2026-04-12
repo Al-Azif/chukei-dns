@@ -364,10 +364,10 @@ kill "$SERVER_PID"
 
 - Not meant for production use by any means. It targets local, single-client scenarios - not a full DNS server.
 - The zones file format is subject to change at any time.
-- Console builds load settings from `/data/chukei/config.json` at startup; missing keys fall back to compiled-in defaults.
+- Console builds load settings from `/data/chukei/config.json` at startup; missing keys fall back to built-in defaults.
 - A missing, unreadable, or unparseable `/data/chukei/config.json` causes the server to load built-in safe default settings.
 - A missing, unreadable, or unparseable `/data/chukei/zones.json` causes the server to load built-in safe default rules.
-- Hot-reloading of `/data/chukei/config.json` and/or `/data/chukei/zones.json` is not supported; a restart is required to load changes. Starting another instance of Chūkei DNS will any currently running Chūkei DNS instances and reload the config/zones.
+- Hot-reloading of `/data/chukei/config.json` and/or `/data/chukei/zones.json` is not supported; a restart is required to load changes. Starting another instance of Chūkei DNS will terminate any currently running Chūkei DNS instances and reload the config/zones.
 - PC builds accept CLI flags for all major settings (run `./build/bin/main --help` to list them).
 - Blocked-domain NXDOMAIN responses include a synthetic SOA in the authority section when the zone name is known. The fallback NXDOMAIN (no zone context) intentionally remains without SOA since the server isn't authoritative for unknown domains.
 
