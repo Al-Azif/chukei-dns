@@ -10,7 +10,7 @@ Chūkei DNS is a lightweight DNS __relay__ server. It provides DNS-over-HTTPS (D
 ### Primary Use Case
 On PlayStation®4/PlayStation®5 systems, Chūkei DNS integrates as a plugin within HEN payloads. By setting the console's DNS to `127.0.0.1`, the system cannot resolve domain names until a payload containing Chūkei DNS is executed. Once active, DNS resolution is restored with filtering and DoH protection enabled.
 
-## Another Use Case
+### Another Use Case
 Access unofficial Minecraft servers on a PlayStation®4/PlayStation®5 system. EarthOnion hosts a community Minecraft server that can be accessed by adding the following entry to your `zones.json` file:
 
 ```json
