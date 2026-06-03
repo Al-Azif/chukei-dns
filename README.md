@@ -10,6 +10,47 @@ Chūkei DNS is a lightweight DNS __relay__ server. It provides DNS-over-HTTPS (D
 ### Primary Use Case
 On PlayStation®4/PlayStation®5 systems, Chūkei DNS integrates as a plugin within HEN payloads. By setting the console's DNS to `127.0.0.1`, the system cannot resolve domain names until a payload containing Chūkei DNS is executed. Once active, DNS resolution is restored with filtering and DoH protection enabled.
 
+## Another Use Case
+Access unofficial Minecraft servers on a PlayStation®4/PlayStation®5 system. EarthOnion hosts a community Minecraft server that can be accessed by adding the following entry to your `zones.json` file:
+
+```json
+{
+  "zone": "hivebedrock.network.",
+  "records": [
+    { "name": "@", "type": "A", "ttl": 300, "data": "139.162.113.175" },
+    { "name": "*", "type": "A", "ttl": 300, "data": "139.162.113.175" }
+  ]
+},
+{
+  "zone": "inpvp.net.",
+  "records": [
+    { "name": "@", "type": "A", "ttl": 300, "data": "139.162.113.175" },
+    { "name": "*", "type": "A", "ttl": 300, "data": "139.162.113.175" }
+  ]
+},
+{
+  "zone": "lbsg.net.",
+  "records": [
+    { "name": "@", "type": "A", "ttl": 300, "data": "139.162.113.175" },
+    { "name": "*", "type": "A", "ttl": 300, "data": "139.162.113.175" }
+  ]
+},
+{
+  "zone": "galaxite.net.",
+  "records": [
+    { "name": "@", "type": "A", "ttl": 300, "data": "139.162.113.175" },
+    { "name": "*", "type": "A", "ttl": 300, "data": "139.162.113.175" }
+  ]
+},
+{
+  "zone": "enchanted.gg.",
+  "records": [
+    { "name": "@", "type": "A", "ttl": 300, "data": "139.162.113.175" },
+    { "name": "*", "type": "A", "ttl": 300, "data": "139.162.113.175" }
+  ]
+}
+```
+
 ### Cross-Platform Support
 PC builds are available for development, testing, and general use.
 Console builds are compatible with all firmwares supported by the SDK; the server behavior is not firmware-dependent.
