@@ -59,9 +59,9 @@ jobs:
       - name: Configure build
         run: |
           if [ "${{ matrix.platform }}" = "PS4" ]; then
-            "$PS4_PAYLOAD_SDK/bin/orbis-cmake" -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
+            "$PS4_PAYLOAD_SDK/bin/orbis-cmake" -DCMAKE_VERBOSE_MAKEFILE=OFF -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
           elif [ "${{ matrix.platform }}" = "PS5" ]; then
-            "$PS5_PAYLOAD_SDK/bin/prospero-cmake" -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
+            "$PS5_PAYLOAD_SDK/bin/prospero-cmake" -DCMAKE_VERBOSE_MAKEFILE=OFF -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release .
           else
             cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ .
           fi
